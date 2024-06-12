@@ -1,0 +1,405 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-primary">
+    <div style="background-color: #0D6EFD;" class="container">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+          <a class="navbar-brand mt-2 mt-sm-0" href="#">
+            <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="50" alt="MDB Logo"
+              loading="lazy" />
+          </a>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link " href="#">Trang chủ</a>
+            </li>
+          </ul>
+        </div>
+  
+        <div class="d-flex align-items-center">
+  
+          <div class="button-div">
+            <!-- Icon -->
+            <button type="button" class="btn btn-primary" (click)="Cart()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart4"
+                viewBox="0 0 16 16">
+                <path
+                  d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+              </svg>
+            </button>
+            <div style="width:250px;text-align: center;">
+              <span>Xin chào : </span>
+              <a href="/customerinfo/{{username}}">{{username}}</a>
+            </div>
+            <button style="max-width : 120px" (click)="Logout()" class="login-button">Đăng xuất</button>
+          </div>
+        </div>
+      </div>
+      <div class="search">
+        <!-- Search -->
+        <form class="w-auto py-1 search-box" style="max-width: 12rem">
+          <div class="input-group">
+            <input type="search" class="form-control rounded-0" placeholder="Search" aria-label="Search">
+          </div>
+        </form>
+      </div>
+  </nav>
+  <div style="height : 170px"></div>
+  <!-- content -->
+  <section *ngIf="clothes" class="py-5">
+    <div class="container">
+      <div class="row gx-5">
+        <aside class="col-lg-6">
+          <div class="border rounded-4 mb-3 d-flex justify-content-center">
+            <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image"
+              href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp">
+              <img style="max-width: 100%; height: 400px; margin: auto;" class="rounded-4 fit"
+                src="/assets/imgs/{{clothes.colors[0].urlImage}}" />
+            </a>
+          </div>
+  
+  
+  
+          <div class="d-flex justify-content-center mb-3" style="overflow-x: auto; white-space: nowrap;">
+            <button (click)="slideLeft()" *ngIf="currentIndex > 0"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223" />
+              </svg></button>
+            <div class="carousel-images">
+              <a *ngFor="let image of visibleImages()" data-fslightbox="mygallery" class="border mx-1 rounded-2"
+                target="_blank" data-type="image" [href]="image" class="item-thumb">
+                <img width="130" height="130" class="rounded-2" [src]="image" />
+              </a>
+            </div>
+            <button (click)="slideRight()" *ngIf="currentIndex < images.length - 2"><svg
+                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671" />
+              </svg></button>
+          </div>
+  
+  
+  
+          <!-- thumbs-wrap.// -->
+          <!-- gallery-wrap .end// -->
+        </aside>
+        <main class="col-lg-6">
+          <div class="ps-lg-3">
+            <h4 class="title text-dark">
+              {{clothes.name}}
+            </h4>
+            <div class="d-flex flex-row my-3">
+              <div class="text-warning mb-1 me-2">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span class="ms-1">
+                  Số sao đánh giá :
+                </span>
+              </div>
+              <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>Đã bán : {{clothes.sold}}</span>
+            </div>
+  
+            <div class="mb-3">
+              <span class="h5">Giá bán : </span>
+              <span class="h5">Giá gốc :</span>
+            </div>
+  
+            <div class="row">
+              <dt class="col-3">Danh mục : </dt>
+              <dd class="col-9">{{clothes.category.name}}</dd>
+  
+              <dt class="col-3">Trạng thái :</dt>
+              <dd class="col-9">Brown</dd>
+  
+            </div>
+  
+            <hr />
+            <form [formGroup]="productForm">
+              <div class="column mb-4">
+                <div class="col-md-4 col-6">
+                  <label class="mb-2">Size</label>
+                  <select formControlName="size" class="form-select border border-secondary" style="height: 35px;">
+                    <option disabled selected>-chọn kích thước-</option>
+                    <option *ngFor="let size of sizes">{{size.size}}</option>
+                  </select>
+                </div>
+  
+                <div class="col-md-4 col-6">
+                  <label class="mb-2">Màu sắc</label>
+                  <select formControlName="color" class="form-select border border-secondary" style="height: 35px;">
+                    <option disabled selected>-chọn kiểu loại-</option>
+                    <option *ngFor="let color of colors">{{color.color}}</option>
+                  </select>
+                </div>
+                <!-- col.// -->
+                <div class="col-md-4 col-6 mb-3">
+                  <label class="mb-2 d-block">Số lượng</label>
+                  <div class="input-group mb-3" style="width: 170px;">
+                    <button (click)="decrease()" class="btn btn-white border border-secondary px-3" type="button" id="button-addon1"
+                      data-mdb-ripple-color="dark">
+                      -
+                    </button>
+                    <input formControlName="quantity" type="number" class="form-control text-center border border-secondary" />
+                    <button (click)="increase()" class="btn btn-white border border-secondary px-3" type="button" id="button-addon2"
+                      data-mdb-ripple-color="dark">
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <button   class="btn btn-warning shadow-0"> Mua ngay </button>
+            <button (click)="addToCart()"  class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i>Thêm vào giỏ hàng </button>
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+  <!-- content -->
+  
+  <section *ngIf="clothes" class="bg-light border-top py-4">
+    <div class="container">
+      <div class="row gx-4">
+        <div class="col-lg-8 mb-4">
+          <div class="border rounded-2 px-3 py-2 bg-white">
+            <!-- Pills navs -->
+            <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+              <li class="nav-item d-flex" role="presentation">
+                <a class="nav-link d-flex align-items-center justify-content-center w-100 active" id="ex1-tab-1"
+                  data-mdb-toggle="pill" href="#ex1-pills-1" role="tab" aria-controls="ex1-pills-1"
+                  aria-selected="true">Mô tả sản phẩm</a>
+              </li>
+            </ul>
+            <!-- Pills navs -->
+  
+            <!-- Pills content -->
+            <div class="tab-content" id="ex1-content">
+              <div class="tab-pane fade show active" id="ex1-pills-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+                <p>
+                  {{clothes.description}}
+                </p>
+                <table class="table border mt-3 mb-2">
+                  <tr>
+                    <th class="py-2">Các màu sắc :</th>
+                    <td class="py-2">
+                      <span *ngFor="let color of colors">
+                        <span>{{color.color}}</span>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="py-2">Các kích thước :</th>
+                    <td class="py-2">
+                      <span *ngFor="let size of sizes">
+                        <span>{{size.size}}</span>
+                      </span>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <!-- Pills content -->
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="px-0 border rounded-2 shadow-0">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Sản phẩm bán chạy</h5>
+                <div class="d-flex mb-3">
+                  <a href="#" class="me-3">
+                    <img src="/assets/imgs/ao-croptop-nu-trang.jpg" style="min-width: 96px; height: 96px;"
+                      class="img-md img-thumbnail" />
+                  </a>
+                  <div class="info">
+                    <a href="#" class="nav-link mb-1">
+                      Tên sản phẩm được mô tả cho sản phẩm này là danh mục
+                    </a>
+                    <strong class="text-dark"> $38.90</strong>
+                  </div>
+                </div>
+  
+                <div class="d-flex mb-3">
+                  <a href="#" class="me-3">
+                    <img src="/assets/imgs/ao-croptop-nu-trang.jpg" style="min-width: 96px; height: 96px;"
+                      class="img-md img-thumbnail" />
+                  </a>
+                  <div class="info">
+                    <a href="#" class="nav-link mb-1">
+                      Summer New Men's Denim <br />
+                      Jeans Shorts
+                    </a>
+                    <strong class="text-dark"> $29.50</strong>
+                  </div>
+                </div>
+  
+                <div class="d-flex mb-3">
+                  <a href="#" class="me-3">
+                    <img src="/assets/imgs/ao-croptop-nu-trang.jpg" style="min-width: 96px; height: 96px;"
+                      class="img-md img-thumbnail" />
+                  </a>
+                  <div class="info">
+                    <a href="#" class="nav-link mb-1"> T-shirts with multiple colors, for men and lady </a>
+                    <strong class="text-dark"> $120.00</strong>
+                  </div>
+                </div>
+  
+                <div class="d-flex">
+                  <a href="#" class="me-3">
+                    <img src="/assets/imgs/ao-croptop-nu-trang.jpg" style="min-width: 96px; height: 96px;"
+                      class="img-md img-thumbnail" />
+                  </a>
+                  <div class="info">
+                    <a href="#" class="nav-link mb-1"> Blazer Suit Dress Jacket for Men, Blue color </a>
+                    <strong class="text-dark"> $339.90</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="text-center text-lg-start text-muted bg-primary mt-3">
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start pt-4 pb-4">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-12 col-lg-3 col-sm-12 mb-2">
+            <!-- Content -->
+            <a href="https://mdbootstrap.com/" target="_blank" class="text-white h2">
+              MDB
+            </a>
+            <p class="mt-1 text-white">
+              © 2023 Copyright: MDBootstrap.com
+            </p>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-6 col-sm-4 col-lg-2">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-2">
+              Store
+            </h6>
+            <ul class="list-unstyled mb-4">
+              <li><a class="text-white-50" href="#">About us</a></li>
+              <li><a class="text-white-50" href="#">Find store</a></li>
+              <li><a class="text-white-50" href="#">Categories</a></li>
+              <li><a class="text-white-50" href="#">Blogs</a></li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-6 col-sm-4 col-lg-2">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-2">
+              Information
+            </h6>
+            <ul class="list-unstyled mb-4">
+              <li><a class="text-white-50" href="#">Help center</a></li>
+              <li><a class="text-white-50" href="#">Money refund</a></li>
+              <li><a class="text-white-50" href="#">Shipping info</a></li>
+              <li><a class="text-white-50" href="#">Refunds</a></li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-6 col-sm-4 col-lg-2">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-2">
+              Support
+            </h6>
+            <ul class="list-unstyled mb-4">
+              <li><a class="text-white-50" href="#">Help center</a></li>
+              <li><a class="text-white-50" href="#">Documents</a></li>
+              <li><a class="text-white-50" href="#">Account restore</a></li>
+              <li><a class="text-white-50" href="#">My orders</a></li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-12 col-sm-12 col-lg-3">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-2">Newsletter</h6>
+            <p class="text-white">Stay in touch with latest updates about our products and offers</p>
+            <div class="input-group mb-3">
+              <input type="email" class="form-control border" placeholder="Email" aria-label="Email"
+                aria-describedby="button-addon2" />
+              <button class="btn btn-light border shadow-0" type="button" id="button-addon2" data-mdb-ripple-color="dark">
+                Join
+              </button>
+            </div>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+  
+    <div class="">
+      <div class="container">
+        <div class="d-flex justify-content-between py-4 border-top">
+          <!--- payment --->
+          <div>
+            <i class="fab fa-lg fa-cc-visa text-white"></i>
+            <i class="fab fa-lg fa-cc-amex text-white"></i>
+            <i class="fab fa-lg fa-cc-mastercard text-white"></i>
+            <i class="fab fa-lg fa-cc-paypal text-white"></i>
+          </div>
+          <!--- payment --->
+  
+          <!--- language selector --->
+          <div class="dropdown dropup">
+            <a class="dropdown-toggle text-white" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown"
+              aria-expanded="false"> <i class="flag-united-kingdom flag m-0 me-1"></i>English </a>
+  
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="Dropdown">
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English <i
+                    class="fa fa-check text-success ms-2"></i></a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
+              </li>
+            </ul>
+          </div>
+          <!--- language selector --->
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer -->

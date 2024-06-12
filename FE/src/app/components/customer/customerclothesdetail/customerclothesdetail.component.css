@@ -1,0 +1,113 @@
+.body{
+    background-color: #000000;
+  }
+  a {
+    text-decoration: none; /* Ẩn gạch chân dưới cho tất cả các thẻ a */
+  }
+  
+  a:hover {
+    text-decoration: underline; /* Hiển thị gạch chân dưới khi hover */
+  }
+  .carousel-item {
+      height: 50vh;
+    }
+  .footer-cta {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+  }
+  .price {
+  color: #263238;
+  font-size: 24px;
+  }
+  
+  .card-title {
+  color:#263238
+  }
+  
+  .sale {
+  color: #E53935
+  }
+  
+  .sale-badge {
+  background-color: #E53935
+  }
+  .navbar{
+    display: flex; /* Sử dụng flexbox */
+    flex-direction: column;
+  }
+  .search-box{
+    /* margin-top: 5px; */
+    margin-bottom: 20px;
+    min-width : 500px;
+  }
+  
+  
+  .button-div{
+    
+    width:400px;
+    height:50px;
+    /* border:2px solid #eee; */
+    /* background-color:#b6bdc9; */
+    background-color:#ffffff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:7px;
+    padding:10px;
+  }
+  
+  .signup-button{
+    width:100%;
+    height:40px;
+    margin-right:7px;
+    margin-left:7px;
+    border:none;
+    border-radius:5px;
+    background-color:#b4b7b9;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+  }
+  
+  .login-button{
+    width:100%;
+    height:40px;
+    border:none;
+    border-radius:5px;
+    font-size:17px;
+    font-weight:600;
+    color:#fff;
+    background-color:#1859c9;
+    cursor:pointer;
+  }
+  
+  
+  .login-button:hover{
+    
+    background-color:#1859c9db;
+  }
+  
+  
+  .signup-button:hover{
+    
+    background-color:#c2c8cfd1;
+  }
+  .card {
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-15px); /* Điều chỉnh giá trị số để thay đổi độ cao nhô lên */
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+    border: 1px solid #000; /* Thiết lập viền đậm khi hover */
+  }
+  .item-price {
+      font-size: 20px;
+      padding: 2px 0;
+  }
+  .item-price s {
+      opacity: 0.7;
+      margin-right: 5px;
+  }
+  s{
+    color: red;text-decoration: line-through
+  }

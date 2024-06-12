@@ -1,0 +1,46 @@
+<div class="container-xl px-4 mt-4">
+    <div style="height: 50px;"></div>
+    <div class="row">
+        <div class="col-xl-4">
+            <!-- Profile picture card-->
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Người dùng</div>
+                <div class="card-body text-center">
+                    <!-- Profile picture image-->
+                    <img class="img-account-profile rounded-circle mb-2"
+                        src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                    <!-- Profile picture help block-->
+                    <div class="small font-italic text-muted mb-4">{{username}}</div>
+                </div>
+            </div>
+            <!-- Profile picture upload button-->
+            <button routerLink="/customerhome" class="btn btn-primary" type="button">Trang chủ</button>
+        </div>
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div [formGroup]="passForm" class="card mb-4">
+                <div class="card-header">Thông tin người dùng</div>
+                <!-- Form Group (email address)-->
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="small mb-1">Nhập mật khẩu cũ</label>
+                        <input class="form-control" type="password" placeholder="Enter your email address"
+                            formControlName="oldPass">
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Nhập mật khẩu mới</label>
+                        <input class="form-control" type="password" placeholder="Enter your email address"
+                            formControlName="newPass">
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Nhập lại mật khẩu mới</label>
+                        <input class="form-control" type="password" placeholder="Enter your email address"
+                            formControlName="renewPass">
+                    </div>
+                </div>
+                <!-- Save changes button-->
+                <button [disabled]="passForm.invalid" (click)="confirm()" class="btn btn-primary" type="button"> Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+</div>
